@@ -1,4 +1,7 @@
 flask
+flask-sqlalchemy
+requests
+psycopg2-binary
 
 black
 isort
