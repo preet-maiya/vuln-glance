@@ -8,4 +8,4 @@ COPY src /app/src
 
 WORKDIR /app
 
-ENTRYPOINT [ "python", "src/server.py" ]
+ENTRYPOINT [ "./commands.sh" ]

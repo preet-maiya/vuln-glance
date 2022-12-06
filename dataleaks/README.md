@@ -1,4 +1,4 @@
-# haveibeenpwned
+# dataleaks
 
 ## Development
 
