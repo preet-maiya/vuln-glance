@@ -19,6 +19,10 @@ push:
 	docker tag dataleaks $(DOCKERUSER)/dataleaks:latest
 	docker push $(DOCKERUSER)/dataleaks:latest
 
-run:
+deploy:
 	kubectl apply -f deployment.yaml
 	kubectl apply -f service.yaml
+
+delete:
+	kubectl delete deploy/dataleaks
+	kubectl delete service/dataleaks-svc

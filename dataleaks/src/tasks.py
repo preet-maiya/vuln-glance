@@ -14,8 +14,8 @@ def fetch_new_leaks():
         r = requests.get(url)
         all_leaks = r.json()
         new_window = int((datetime.datetime.utcnow() - relativedelta(hours=config.daily_fetch_time)).timestamp())
-        # new_window = int((datetime.datetime.utcnow() - relativedelta(years=1)).timestamp())
-        conn = psycopg2.connect(host=config.psql_host, user=config.psql_user, password=config.psql_password)
+        # new_window = int((datetime.datetime.utcnow() - relativedelta(years=25)).timestamp())
+        conn = psycopg2.connect(host=config.psql_host, user=config.psql_user, password=config.psql_password, dbname=config.psql_dbname)
         cursor = conn.cursor()
         for leak in all_leaks:
             add_date = int(datetime.datetime.strptime(f'{leak["BreachDate"]}', '%Y-%m-%d').timestamp())
