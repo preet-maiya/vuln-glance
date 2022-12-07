@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dataleaks-svc
+  labels:
+    app: dataleaks
+spec:
+  ports:
+    - name: dataleaks
+      protocol: "TCP"
+      port: 5002
+      targetPort: 5002
+  selector:
+    app: dataleaks
+  type: NodePort
