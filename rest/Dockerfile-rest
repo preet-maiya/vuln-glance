@@ -1,0 +1,8 @@
+FROM python:3
+LABEL MAINTAINER="aditi.r.athreya@gmail.com"
+
+RUN pip3 install --upgrade redis minio jsonpickle requests flask
+
+WORKDIR /app
+COPY    ./rest-server.py .
+CMD [ "python3", "rest-server.py"]
