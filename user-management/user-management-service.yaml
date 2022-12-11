@@ -9,7 +9,7 @@ spec:
     - name: user-management
       protocol: "TCP"
       port: 5000
-      targetPort: 5002
+      targetPort: 5000
   selector:
     app: user-management
   type: NodePort
