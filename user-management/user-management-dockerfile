@@ -1,0 +1,9 @@
+FROM python:3.8
+
+RUN pip install requests python-keycloak==2.6.0 flask 
+
+COPY src /app/src
+
+WORKDIR /app
+
+ENTRYPOINT [ "python", "src/user-management.py" ]

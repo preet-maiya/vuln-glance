@@ -1,0 +1,31 @@
+apiVersion: apps/v1 #  for k8s versions before 1.9.0 use apps/v1beta2  and before 1.8.0 use extensions/v1beta1
+kind: Deployment
+metadata:
+  name: haveibeenpwned
+spec:
+  selector:
+    matchLabels:
+      app: haveibeenpwned
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: haveibeenpwned
+    spec:
+      containers:
+      - name: master
+        image: haveibeenpwned:dev
+        resources:
+          requests:
+            cpu: 100m
+            memory: 400Mi
+        ports:
+        - containerPort: 5000
+        env:
+        - name: VERSION
+          value: "v1"
+        - name: HIBP_API_KEY
+          valueFrom: 
+            secretKeyRef: 
+              key: api-key
+              name: hibp-api-key
