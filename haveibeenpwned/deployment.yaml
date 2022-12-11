@@ -24,3 +24,8 @@ spec:
         env:
         - name: VERSION
           value: "v1"
+        - name: HIBP_API_KEY
+          valueFrom: 
+            secretKeyRef: 
+              key: api-key
+              name: hibp-api-key

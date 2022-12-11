@@ -19,6 +19,12 @@ push:
 	docker tag haveibeenpwned $(DOCKERUSER)/haveibeenpwned:latest
 	docker push $(DOCKERUSER)/haveibeenpwned:latest
 
-run:
+deploy:
+	kubectl apply -f secrets.yaml
 	kubectl apply -f deployment.yaml
 	kubectl apply -f service.yaml
+
+delete:
+	kubectl delete deploy/haveibeenpwned
+	kubectl delete service/haveibeenpwned-svc
+	kubectl delete secret/hibp-api-key

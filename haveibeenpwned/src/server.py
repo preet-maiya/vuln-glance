@@ -1,9 +1,10 @@
+from __future__ import absolute_import
 from flask import Flask, request, jsonify, make_response
 import logging
-from db_models import db
-from helpers import get_breached_account_details
+from src.db_models import db
+from src.helpers import get_breached_account_details
 
-import config
+import src.config as config
 
 base_route = f"{config.api_version}"
 
