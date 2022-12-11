@@ -6,6 +6,8 @@ RUN pip install -r /app/requirements.txt
 
 COPY src /app/src
 
+COPY commands.sh /app/commands.sh
+
 WORKDIR /app
 
-ENTRYPOINT [ "python", "src/server.py" ]
+ENTRYPOINT [ "./commands.sh" ]
