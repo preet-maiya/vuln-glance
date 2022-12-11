@@ -21,7 +21,7 @@ default_time = 1 # years
 # psql_host = "localhost"
 # psql_user = "postgres"
 # psql_password = "postgres"
-# psql_dbname = "admin"
+# psql_dbname = "postgres"
 
 # container configs
 psql_host = "postgres"
@@ -33,3 +33,5 @@ get_query = '''SELECT * from dataleaks where breach_epoch >= %s;'''
 insert_data = f'''INSERT INTO dataleaks (breach_epoch, leak_info) values (%s, $$%s$$);'''
 ## create table command 
 # create table dataleaks (leak_id serial primary key, breach_epoch integer not null, leak_info jsonb not null);
+
+resp_fields = ["Name", "Domain", "PwnCount", "AddedDate", "DataClasses", "Description"]
