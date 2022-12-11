@@ -2,6 +2,7 @@ flask
 flask-sqlalchemy
 requests
 psycopg2-binary
+celery
 
 black
 isort
