@@ -24,7 +24,12 @@ def hello():
 @app.route(f"{base_route}/leaks", methods=["GET"], defaults={'years': None})
 @app.route(f"{base_route}/leaks/<years>", methods=["GET"])
 def get_recent_leaks(years=None):
-    epoch_time = int((datetime.datetime.utcnow() - relativedelta(years=1)).timestamp())
+
+    if years and not years.isdigit():
+        err_resp = {"msg": "Enter valid number of years"}
+        return Response(response=json.dumps(err_resp), status=400, mimetype="application/json")
+    
+    epoch_time = int((datetime.datetime.utcnow() - relativedelta(years=int(config.default_time))).timestamp())
     if years:
         epoch_time = int((datetime.datetime.utcnow() - relativedelta(years=int(years))).timestamp())
     
