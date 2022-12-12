@@ -1,0 +1,35 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vuln-glance
+  annotations:
+    # use the shared ingress-nginx
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/proxy-body-size: 16m
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: localhost
+    http:
+      paths:
+      - path: /haveibeenpwned
+        pathType: Prefix
+        backend:
+          service:
+            name: haveibeenpwned-svc
+            port:
+              number: 5000
+      - path: /auth
+        pathType: Prefix
+        backend:
+          service:
+            name: user-management-svc
+            port:
+              number: 5000
+      - path: /dataleaks
+        pathType: Prefix
+        backend:
+          service:
+            name: dataleaks-svc
+            port:
+              number: 5002
