@@ -1,10 +1,12 @@
 import requests
 import json
-from flask import *
-
-from flask import Flask,render_template
+from flask import Flask,render_template, Response
 app=Flask(__name__)
 
+
+@app.route("/")
+def hello():
+    return Response(response="<h1>haveibeenpwned Service</h1><p> Use a valid endpoint </p>", status=200)
 
 @app.route('/home')
 def home():

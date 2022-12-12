@@ -30,6 +30,10 @@ def is_pwned():
         return make_response(jsonify({"message": "Email not provided"}), 400)
 
     breached_sites = get_breached_account_details(email)
+
+    if not breached_sites:
+        logging.debug(f"not pwned sites found")
+        breached_sites = ["not pwned sites found"]
     # header = ["breached_sites"]
     return render_template('first.html',data=breached_sites)
     return make_response(jsonify({"breached_sites": breached_sites}))
