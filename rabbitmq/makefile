@@ -7,5 +7,5 @@ createuser:
 	kubectl exec -it rabbitmq-server-0 -- rabbitmqctl set_permissions -p / vuln_glance ".*" ".*" ".*"
 
 stop:
-	kubectl delete kubectl delete statefulset.apps/rabbitmq-server rabbitmqcluster.rabbitmq.com/rabbitmq
+	kubectl delete statefulset.apps/rabbitmq-server rabbitmqcluster.rabbitmq.com/rabbitmq
 	kubectl delete --all all -n rabbitmq-system

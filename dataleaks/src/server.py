@@ -1,10 +1,12 @@
-from flask import Flask, Response
+from flask import Flask, Response, render_template
 from dateutil.relativedelta import relativedelta
+from helpers import get_data
 import config
 import json
 import psycopg2
 import datetime
 import traceback
+import requests
 
 app = Flask(__name__)
 base_route = f"{config.api_version}"
@@ -20,6 +22,19 @@ def hello():
     }
     return Response(response=json.dumps(resp), status=200, mimetype="application/json")
 
+@app.route('/home')
+def home():
+    #return parse_json
+    return render_template('home.html')
+
+@app.route(f"{base_route}/recentcves", methods=["GET"])
+def recent_cve():
+    response_API = requests.get('https://cve.circl.lu/api/last')
+    data = response_API.text
+    parse_json = json.loads(data)
+    columns=["id","summary"]
+    header=["Vulnerability","Summary"]
+    return render_template('recentcves.html',data=parse_json,colnames=columns,header=header)
 
 @app.route(f"{base_route}/leaks", methods=["GET"], defaults={'years': None})
 @app.route(f"{base_route}/leaks/<years>", methods=["GET"])
@@ -41,9 +56,19 @@ def get_recent_leaks(years=None):
         cursor.execute(query)
         results = cursor.fetchall()
         print(f"Fetched a total of {len(results)} leaks")
+
+        if len(results) == 0:
+            resp = get_data()
+
         for result in results:
             resp.append(result[2])
-        return Response(response=json.dumps(resp), status=200, mimetype="application/json")
+        
+        columns=config.resp_fields
+        header=config.resp_fields
+
+        return render_template('first.html',data=resp,colnames=columns,header=header, size=len(resp))
+
+        # return Response(response=json.dumps(resp), status=200, mimetype="application/json")
     except Exception as ex:
         traceback.print_exc()
         err_resp = {"msg": "Failed to fetch the recent data leaks."}

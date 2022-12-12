@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>First Flask App</title>
+</head>
+<body>
+    <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+<div>
+    <h1>Glance at Security Vulnerabilities</h1>
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="text" id="email" name="email" placeholder="Enter the email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- <form action="http://127.0.0.1:5000/haveibeenpawned" method="post">
+                        <input type = "submit" value = "HaveIBeenPawned">
+                    </form> -->
+                    <script>
+                        function getUrl() {
+                            val = document.getElementById("email").value;
+                            pwned_url = "http://localhost/haveibeenpwned/v1/pwned?email="+val;
+                            console.log(pwned_url)
+                            window.open(pwned_url);
+                        }
+                        data_leaks_url = "http://localhost/dataleaks/v1/leaks"
+                        recent_cve_url = "http://localhost/dataleaks/v1/recentcves"
+                    </script>
+                    <button type="button" class="btn btn-secondary" onclick="getUrl()">HaveIBeenPawned</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- <form action="http://127.0.0.1:5000/dataleaks" method="post">
+                        <input type = "submit" value = "Dataleaks">
+                    </form> -->
+                    <button type="button" class="btn btn-secondary" onclick="window.open(data_leaks_url);">Dataleaks</button>
+                </td>
+                
+            </tr>
+            <tr>
+                <td>
+                    <!-- <form action="http://127.0.0.1:5000/recentcves" method="post">
+                        <input type = "submit" value = "RecentCVEs">
+                    </form> -->
+                    <button type="button" class="btn btn-secondary" onclick="window.open(recent_cve_url);">RecentCVEs</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+</div>    
+   <!-- <table border="1" class="table table-striped table-dark">
+        <thead>
+            <tr></tr>
+        </thead>
+        <tbody>
+            <tr>
+                 
+                <button type="button" onclick="window.location.href='http://127.0.0.1:5000/recentcves'">RecentCVEs</button>
+            </tr>
+        </tbody>
+        
+    </table>-->
+    
+</body>
+</html>

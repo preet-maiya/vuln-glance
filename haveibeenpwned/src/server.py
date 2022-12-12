@@ -1,9 +1,10 @@
-from flask import Flask, request, jsonify, make_response
+from __future__ import absolute_import
+from flask import Flask, request, jsonify, make_response, render_template
 import logging
-from db_models import db
-from helpers import get_breached_account_details
+from src.db_models import db
+from src.helpers import get_breached_account_details
 
-import config
+import src.config as config
 
 base_route = f"{config.api_version}"
 
@@ -29,6 +30,12 @@ def is_pwned():
         return make_response(jsonify({"message": "Email not provided"}), 400)
 
     breached_sites = get_breached_account_details(email)
+
+    if not breached_sites:
+        logging.debug(f"not pwned sites found")
+        breached_sites = ["not pwned sites found"]
+    # header = ["breached_sites"]
+    return render_template('first.html',data=breached_sites)
     return make_response(jsonify({"breached_sites": breached_sites}))
 
 

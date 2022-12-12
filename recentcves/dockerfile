@@ -4,10 +4,10 @@ COPY requirements.txt /app/requirements.txt
 
 RUN pip install -r /app/requirements.txt
 
-COPY src /app/src
+COPY templates /app/templates
 
-COPY commands.sh /app/commands.sh
+COPY restserver.py /app/restserver.py
 
 WORKDIR /app
 
-ENTRYPOINT [ "./commands.sh" ]
+ENTRYPOINT [ "python3", "-u", "restserver.py" ]

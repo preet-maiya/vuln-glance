@@ -1,6 +1,6 @@
-from db_models import db, Accounts, BreachedSites
+from src.db_models import db, Accounts, BreachedSites
 import requests
-import config
+import src.config as config
 import logging
 
 def get_breached_account_details(account):

@@ -1,6 +1,6 @@
 from celery import Celery
 from celery.schedules import crontab
-import config
+import src.config as config
 
 class CeleryConfig:
     CELERY_IMPORTS = ('src.tasks')
@@ -8,11 +8,12 @@ class CeleryConfig:
     CELERY_ACCEPT_CONTENT = ['json', 'msgpack', 'yaml']
     CELERY_TASK_SERIALIZER = 'json'
     CELERY_RESULT_SERIALIZER = 'json'
+    SQLALCHEMY_DATABASE_URI = config.postgres_connection_string
     # CELERY_TIMEZONE = 'Asia/Seoul'
     CELERY_ENABLE_UTC = True
     CELERYBEAT_SCHEDULE = {
         "time_scheduler": {
-            "task": "tasks.fetch_new_leaks", 
+            "task": "src.tasks.fetch_new_pwn", 
             "schedule": crontab(hour=f"*/{config.daily_fetch_time}", minute=0) #set schedule time
             # Ref: https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html
             # "schedule": 60

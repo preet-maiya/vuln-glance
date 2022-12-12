@@ -1,4 +1,4 @@
-PORT = 5002
+PORT = 5000
 HOST = "0.0.0.0"
 APP_NAME = "dataleaks"
 
