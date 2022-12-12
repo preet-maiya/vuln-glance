@@ -1,5 +1,6 @@
 from flask import Flask, Response
 from dateutil.relativedelta import relativedelta
+from helpers import get_data
 import config
 import json
 import psycopg2
@@ -41,8 +42,13 @@ def get_recent_leaks(years=None):
         cursor.execute(query)
         results = cursor.fetchall()
         print(f"Fetched a total of {len(results)} leaks")
+
+        if len(results) == 0:
+            resp = get_data()
+
         for result in results:
             resp.append(result[2])
+
         return Response(response=json.dumps(resp), status=200, mimetype="application/json")
     except Exception as ex:
         traceback.print_exc()

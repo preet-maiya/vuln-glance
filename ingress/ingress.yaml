@@ -6,27 +6,27 @@ metadata:
     # use the shared ingress-nginx
     kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/proxy-body-size: 16m
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
   - host: localhost
     http:
       paths:
-      - path: /haveibeenpwned
+      - path: /haveibeenpwned/(.*)
         pathType: Prefix
         backend:
           service:
             name: haveibeenpwned-svc
             port:
               number: 5000
-      - path: /auth
+      - path: /auth/(.*)
         pathType: Prefix
         backend:
           service:
             name: user-management-svc
             port:
               number: 5000
-      - path: /dataleaks
+      - path: /dataleaks/(.*)
         pathType: Prefix
         backend:
           service:
