@@ -8,8 +8,8 @@ spec:
   ports:
     - name: dataleaks
       protocol: "TCP"
-      port: 5002
-      targetPort: 5002
+      port: 5000
+      targetPort: 5000
   selector:
     app: dataleaks
   type: NodePort

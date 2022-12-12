@@ -6,7 +6,13 @@ from flask import Flask,render_template
 app=Flask(__name__)
 
 
-@app.route('/recentcves', methods=["GET","POST"])
+@app.route('/home')
+def home():
+    #return parse_json
+    return render_template('home.html')
+
+
+@app.route('/v1/recentcves', methods=["GET","POST"])
 def recent_cve():
     # if request.method == "POST":
     response_API = requests.get('https://cve.circl.lu/api/last')

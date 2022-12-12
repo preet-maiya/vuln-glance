@@ -26,10 +26,17 @@ spec:
             name: user-management-svc
             port:
               number: 5000
+      - path: /home/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: recentcves-svc
+            port:
+              number: 5000
       - path: /dataleaks/(.*)
         pathType: Prefix
         backend:
           service:
             name: dataleaks-svc
             port:
-              number: 5002
+              number: 5000

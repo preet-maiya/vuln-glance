@@ -22,13 +22,23 @@
         <tbody>
             <tr>
                 <td>
-                    <input type="text" name="email" value ="email">
+                    <input type="text" id="email" name="email" placeholder="Enter the email">
                 </td>
+            </tr>
+            <tr>
                 <td>
                     <!-- <form action="http://127.0.0.1:5000/haveibeenpawned" method="post">
                         <input type = "submit" value = "HaveIBeenPawned">
                     </form> -->
-                    <button type="button" class="btn btn-secondary" onclick="http://127.0.0.1:5000/haveibeenpawned">HaveIBeenPawned</button>
+                    <script>
+                        function getUrl() {
+                            val = document.getElementById("email").value;
+                            pwned_url = "http://127.0.0.1:5000/haveibeenpawned/v1/pwned?email="+val;
+                            console.log(pwned_url)
+                            window.open(pwned_url);
+                        }
+                    </script>
+                    <button type="button" class="btn btn-secondary" onclick="getUrl()">HaveIBeenPawned</button>
                 </td>
             </tr>
             <tr>
@@ -36,7 +46,7 @@
                     <!-- <form action="http://127.0.0.1:5000/dataleaks" method="post">
                         <input type = "submit" value = "Dataleaks">
                     </form> -->
-                    <button type="button" class="btn btn-secondary" onclick="http://127.0.0.1:5000/dataleaks">Dataleaks</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.open('http://127.0.0.1:5000/dataleaks/v1/leaks');">Dataleaks</button>
                 </td>
                 
             </tr>
@@ -45,7 +55,7 @@
                     <!-- <form action="http://127.0.0.1:5000/recentcves" method="post">
                         <input type = "submit" value = "RecentCVEs">
                     </form> -->
-                    <button type="button" class="btn btn-secondary" onclick="http://127.0.0.1:5000/recentcves">RecentCVEs</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.open('http://127.0.0.1:5000/recentcves/v1/recentcves');">RecentCVEs</button>
                 </td>
             </tr>
         </tbody>

@@ -18,9 +18,9 @@ spec:
         resources:
           requests:
             cpu: 100m
-            memory: 400Mi
+            memory: 200Mi
         ports:
-        - containerPort: 5002
+        - containerPort: 5000
         env:
         - name: VERSION
           value: "v1"

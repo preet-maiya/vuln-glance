@@ -16,23 +16,26 @@
 
     <h1>Glance at Security Vulnerabilities</h1>
    
-    <!-- <form action="http://127.0.0.1:5000/recentcves" method="post">
-        <input type="text" value="">
-        <input type = "submit" value = "RecentCVEs">
-    </form> -->
-    
     <table border="1" class="table table-striped table-dark">
         <thead>
             <tr>
-                <th>Vulnerabilities</th>
+                {% for col in header %}
+                <th>{{ col }}</th>
+                {% endfor %}
             </tr>
         </thead>
         <tbody> 
+            {% for i in range(size) %}
+            {% with data = data[i] %}
+           
             <tr>
                 {% for col in colnames %}
                 <td>{{ data[col] }}</td>
                 {% endfor %}
             </tr>
+            
+            {% endwith %}
+            {% endfor %}
         </tbody>
         
     </table>

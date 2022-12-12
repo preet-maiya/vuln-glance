@@ -1,5 +1,5 @@
 from __future__ import absolute_import
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, jsonify, make_response, render_template
 import logging
 from src.db_models import db
 from src.helpers import get_breached_account_details
@@ -30,6 +30,8 @@ def is_pwned():
         return make_response(jsonify({"message": "Email not provided"}), 400)
 
     breached_sites = get_breached_account_details(email)
+    # header = ["breached_sites"]
+    return render_template('first.html',data=breached_sites)
     return make_response(jsonify({"breached_sites": breached_sites}))
 
 

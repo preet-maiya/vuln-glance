@@ -1,4 +1,4 @@
-from flask import Flask, Response
+from flask import Flask, Response, render_template
 from dateutil.relativedelta import relativedelta
 from helpers import get_data
 import config
@@ -48,8 +48,13 @@ def get_recent_leaks(years=None):
 
         for result in results:
             resp.append(result[2])
+        
+        columns=config.resp_fields
+        header=config.resp_fields
 
-        return Response(response=json.dumps(resp), status=200, mimetype="application/json")
+        return render_template('first.html',data=resp,colnames=columns,header=header, size=len(resp))
+
+        # return Response(response=json.dumps(resp), status=200, mimetype="application/json")
     except Exception as ex:
         traceback.print_exc()
         err_resp = {"msg": "Failed to fetch the recent data leaks."}
